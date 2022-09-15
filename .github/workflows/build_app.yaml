@@ -1,0 +1,67 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build app
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build app
+    runs-on: ubuntu-latest
+    env:
+      JAVA_VERSION: "11.0"
+    steps:
+      - name: git Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup java environment
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setting up flutter environment
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.0.5'
+
+      - name: Download flutter app dependecies
+        run: flutter pub get
+
+      - name: Setup Keystore and Key properties for signing
+        env:
+          KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES}}
+          GOMART_KEYSTORE: ${{ secrets.ANROID_MARKETYERI_KEYSTORE}}
+        run:
+          |
+          # create key.properties and marketyeri.keystore.jks
+          KEY_PROPERTIES_PATH=${GITHUB_WORKSPACE}/android/key.properties
+          MARKETYERI_KEYSTORE_PATH=${GITHUB_WORKSPACE}/android/app/marketyeri.keystore.jks
+          openssl enc -base64 -d <<< "$KEY_PROPERTIES" -out $KEY_PROPERTIES_PATH
+          openssl enc -base64 -d <<< "$MARKETYERI_KEYSTORE" -out $MARKETYERI_KEYSTORE_PATH
+          cd android && ls
+
+
+      - name: Setup google service accounts
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.FIREBASE_GOOGLE_SERVICE_JSON}}
+          GOOGLE_SERVICES_PLIST: ${{ secrets.FIREBASE_GOOGLE_SERVICE_PLIST}}
+        run:
+          |
+          # create /android/app/google-services.json and /ios/Runner/GoogleService-Info.plist
+          GOOGLE_SERVICES_JSON_PATH=${GITHUB_WORKSPACE}/android/app/google-services.json
+          GOOGLE_SERVICES_PLIST_PATH=${GITHUB_WORKSPACE}/ios/Runner/GoogleService-Info.plist
+          openssl enc -base64 -d <<< "$GOOGLE_SERVICES_JSON" -out $GOOGLE_SERVICES_JSON_PATH
+          openssl enc -base64 -d <<< "$GOOGLE_SERVICES_PLIST" -out $GOOGLE_SERVICES_PLIST_PATH
+          cd android/app && ls
+
+      - name: Build flutter apk
+        run: flutter build apk
