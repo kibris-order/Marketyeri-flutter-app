@@ -67,7 +67,7 @@ jobs:
           GOOGLE_SERVICES_PLIST_PATH=${GITHUB_WORKSPACE}/ios/Runner/GoogleService-Info.plist
           echo -n "$GOOGLE_SERVICES_JSON" | base64 --decode --output $GOOGLE_SERVICES_JSON_PATH
           echo -n "$GOOGLE_SERVICES_PLIST" | base64 --decode --output $GOOGLE_SERVICES_PLIST_PATH
-          cd /ios/Runner && ls
+          cd ${GITHUB_WORKSPACE}/ios/Runner && ls
 
       - name: Flutter pub get
         run: flutter pub get
