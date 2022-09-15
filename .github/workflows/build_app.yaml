@@ -40,12 +40,11 @@ jobs:
         env:
           KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES}}
           GOMART_KEYSTORE: ${{ secrets.ANROID_MARKETYERI_KEYSTORE}}
-          REPO_PATH: ${{github.host-workspace}}
         run:
           |
           # create key.properties and marketyeri.keystore.jks
-          KEY_PROPERTIES_PATH=$REPO_PATH/android/key.properties
-          MARKETYERI_KEYSTORE_PATH=$REPO_PATH/android/app/marketyeri.keystore.jks
+          KEY_PROPERTIES_PATH=${GITHUB_WORKSPACE}/android/key.properties
+          MARKETYERI_KEYSTORE_PATH=${GITHUB_WORKSPACE}/android/app/marketyeri.keystore.jks
           openssl enc -base64 -d <<< "$KEY_PROPERTIES" -out $KEY_PROPERTIES_PATH
           openssl enc -base64 -d <<< "$MARKETYERI_KEYSTORE" -out $MARKETYERI_KEYSTORE_PATH
           cd android && ls
@@ -55,12 +54,11 @@ jobs:
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.FIREBASE_GOOGLE_SERVICE_JSON}}
           GOOGLE_SERVICES_PLIST: ${{ secrets.FIREBASE_GOOGLE_SERVICE_PLIST}}
-          REPO_PATH: ${{github.host-workspace}}
         run:
           |
           # create /android/app/google-services.json and /ios/Runner/GoogleService-Info.plist
-          GOOGLE_SERVICES_JSON_PATH=$REPO_PATH/android/app/google-services.json
-          GOOGLE_SERVICES_PLIST_PATH=$REPO_PATH/ios/Runner/GoogleService-Info.plist
+          GOOGLE_SERVICES_JSON_PATH=${GITHUB_WORKSPACE}/android/app/google-services.json
+          GOOGLE_SERVICES_PLIST_PATH=${GITHUB_WORKSPACE}/ios/Runner/GoogleService-Info.plist
           openssl enc -base64 -d <<< "$GOOGLE_SERVICES_JSON" -out $GOOGLE_SERVICES_JSON_PATH
           openssl enc -base64 -d <<< "$GOOGLE_SERVICES_PLIST" -out $GOOGLE_SERVICES_PLIST_PATH
           cd android/app && ls
