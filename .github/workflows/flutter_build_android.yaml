@@ -1,0 +1,103 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI flutter build android
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build app
+    runs-on: ubuntu-latest
+    env:
+      JAVA_VERSION: "11.0"
+    steps:
+      - name: git Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate build number
+        id: buildnumber
+        uses: einaregilsson/build-number@v3
+        with:
+          token: ${{secrets.ACCESS_TOKEN_GITHUB}}
+
+      - name: Setup java environment
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setting up flutter environment
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.0.5'
+
+      - name: Download flutter app dependecies
+        run: flutter pub get
+
+      - name: Run all our tests
+        run: flutter test
+
+      - name: Setup Keystore and Key properties for signing
+        env:
+          KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES}}
+          GOMART_KEYSTORE: ${{ secrets.ANROID_MARKETYERI_KEYSTORE}}
+        run:
+          |
+          # create key.properties and marketyeri.keystore.jks
+          KEY_PROPERTIES_PATH=${GITHUB_WORKSPACE}/android/key.properties
+          MARKETYERI_KEYSTORE_PATH=${GITHUB_WORKSPACE}/android/app/marketyeri.keystore.jks
+          openssl enc -base64 -d <<< "$KEY_PROPERTIES" -out $KEY_PROPERTIES_PATH
+          openssl enc -base64 -d <<< "$MARKETYERI_KEYSTORE" -out $MARKETYERI_KEYSTORE_PATH
+          cd android && ls
+
+      - name: Setup google service accounts
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.FIREBASE_GOOGLE_SERVICE_JSON}}
+          GOOGLE_SERVICES_PLIST: ${{ secrets.FIREBASE_GOOGLE_SERVICE_PLIST}}
+        run:
+          |
+          # create /android/app/google-services.json and /ios/Runner/GoogleService-Info.plist
+          GOOGLE_SERVICES_JSON_PATH=${GITHUB_WORKSPACE}/android/app/google-services.json
+          GOOGLE_SERVICES_PLIST_PATH=${GITHUB_WORKSPACE}/ios/Runner/GoogleService-Info.plist
+          openssl enc -base64 -d <<< "$GOOGLE_SERVICES_JSON" -out $GOOGLE_SERVICES_JSON_PATH
+          openssl enc -base64 -d <<< "$GOOGLE_SERVICES_PLIST" -out $GOOGLE_SERVICES_PLIST_PATH
+          cd android/app && ls
+
+      - name: Build flutter apk
+        run: flutter build apk --build-name=1.2.0+${GITHUB_SHA::6} --build-number=${{ steps.buildnumber.outputs.build_number }}
+
+      - name: Navigate to where our apk is
+        run: cd build/app/outputs/flutter-apk/ && ls
+
+      - name: Upload our apk artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+  deploy_app_distribution:
+    name: Deploy to app distribution
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: android-apk
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_ANDROID_APPID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: app_testers
+          file: app-release.apk
