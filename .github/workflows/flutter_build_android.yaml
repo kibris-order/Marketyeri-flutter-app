@@ -49,12 +49,12 @@ jobs:
       - name: Setup Keystore and Key properties for signing
         env:
           KEY_PROPERTIES: ${{ secrets.ANDROID_KEY_PROPERTIES}}
-          GOMART_KEYSTORE: ${{ secrets.ANROID_MARKETYERI_KEYSTORE}}
+          MARKETYERI_KEYSTORE: ${{ secrets.ANROID_MARKETYERI_KEYSTORE}}
         run:
           |
-          # create key.properties and marketyeri.keystore.jks
+          # create key.properties and marketyeri.keystore
           KEY_PROPERTIES_PATH=${GITHUB_WORKSPACE}/android/key.properties
-          MARKETYERI_KEYSTORE_PATH=${GITHUB_WORKSPACE}/android/app/marketyeri.keystore.jks
+          MARKETYERI_KEYSTORE_PATH=${GITHUB_WORKSPACE}/android/app/marketyeri.keystore
           openssl enc -base64 -d <<< "$KEY_PROPERTIES" -out $KEY_PROPERTIES_PATH
           openssl enc -base64 -d <<< "$MARKETYERI_KEYSTORE" -out $MARKETYERI_KEYSTORE_PATH
           cd android && ls
