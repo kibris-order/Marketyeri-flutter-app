@@ -23,6 +23,12 @@ samples, guidance on mobile development, and a full API reference.
 flutter pub run flutter_native_splash:create --path=flutter_native_splash.yaml
 
 
-injectable build_runner flutter pub run build_runner build --delete-conflicting-outputs
+### injectable build_runner
+flutter pub run build_runner build --delete-conflicting-outputs
 
+### anytime you add a new firebase package you need to run this
 flutterfire configure
+
+
+### for freezed you can run this for the code generation
+flutter pub run build_runner build

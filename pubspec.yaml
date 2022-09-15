@@ -43,6 +43,13 @@ dependencies:
   bloc: ^8.1.0
   flutter_bloc: ^8.1.1
   flutter_phoenix: ^1.1.0
+  algolia: ^1.1.1
+  firebase_core: ^1.22.0
+  firebase_auth: ^3.8.0
+  cloud_firestore: ^3.4.7
+  firebase_storage: ^10.3.8
+  freezed_annotation: ^2.1.0
+  json_annotation: ^4.6.0
 
 dev_dependencies:
   flutter_test:
