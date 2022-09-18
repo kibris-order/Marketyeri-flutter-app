@@ -14,7 +14,10 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'data/repository/AuthFacade/AuthFacade.dart' as _i9;
 import 'data/repository/AuthFacade/IAuthFacade.dart' as _i8;
-import 'service/app_module.dart' as _i10;
+import 'data/repository/UserRepository/IUserRepository.dart' as _i10;
+import 'data/repository/UserRepository/UserRepository.dart' as _i11;
+import 'screens/Authentication/bloc/authentication_bloc.dart' as _i12;
+import 'service/app_module.dart' as _i13;
 import 'service/firebase_service.dart'
     as _i6; // ignore_for_file: unnecessary_lambdas
 
@@ -43,7 +46,13 @@ Future<_i1.GetIt> $initGetIt(
         get<_i4.FirebaseAuth>(),
         get<_i5.FirebaseFirestore>(),
       ));
+  gh.factory<_i10.IUserRepository>(() => _i11.UserRepository(
+        get<_i4.FirebaseAuth>(),
+        get<_i5.FirebaseFirestore>(),
+      ));
+  gh.factory<_i12.AuthenticationBloc>(
+      () => _i12.AuthenticationBloc(get<_i10.IUserRepository>()));
   return get;
 }
 
-class _$AppModule extends _i10.AppModule {}
+class _$AppModule extends _i13.AppModule {}
