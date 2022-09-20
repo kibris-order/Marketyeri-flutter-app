@@ -28,96 +28,98 @@ class LoginScreen extends StatelessWidget {
                 MarketYeriIcons.marketYeriLogo,
                 size: 20,
               ),
-              Expanded(
-                  child: Column(
+              Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.05)),
+              Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Welcome to Login',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26,
-                        color: Styles.colorDark),
-                  ),
-                  const Padding(padding: EdgeInsets.all(4)),
-                  const Text(
-                    'Please enter below details to login',
-                    style: TextStyle(
-                        color: Styles.colorDark,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300),
-                  ),
-                  const Text(
-                    'to your account',
-                    style: TextStyle(
-                        color: Styles.colorDark,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300),
-                  ),
-                  const Padding(padding: EdgeInsets.all(21)),
-                  Container(
-                      height: 55,
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      decoration: BoxDecoration(
-                          color: const Color(0xfffdfdfd),
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(color: const Color(0xffebebeb))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Padding(padding: EdgeInsets.all(8)),
-                          Icon(Icons.person, size: 24, color: Color(0xff7c7c7c),),
-                          const Padding(padding: EdgeInsets.all(8)),
-                          Container(
-                              color: Color(0xffebebeb), height: 55, width: 1),
-                          const Padding(padding: EdgeInsets.all(8)),
-                          const Text(
-                            'Email',
-                            style: TextStyle(
-                                color: Color(0xff7c7c7c),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      )),
-                  const Padding(padding: EdgeInsets.all(8)),
-                  Container(
-                      height: 55,
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      decoration: BoxDecoration(
-                          color: const Color(0xfffdfdfd),
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(color: const Color(0xffebebeb))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Padding(padding: EdgeInsets.all(8)),
-                          const Icon(Icons.lock_outline, size: 24, color: Color(0xff7c7c7c)),
-                          const Padding(padding: EdgeInsets.all(8)),
-                          Container(
-                              color: Color(0xffebebeb), height: 55, width: 1),
-                          const Padding(padding: EdgeInsets.all(8)),
-                          const Expanded(
-                            child: Text(
-                              'Password',
-                              style: TextStyle(
-                                  color: Color(0xff7c7c7c),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const Icon(Icons.remove_red_eye_outlined, size: 24, color: Color(0xff7c7c7c)),
-                          const Padding(padding: EdgeInsets.all(8)),
-                        ],
-                      )),
+              const Text(
+                'Welcome to Login',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 26,
+                    color: Styles.colorDark),
+              ),
+              const Padding(padding: EdgeInsets.all(4)),
+              const Text(
+                'Please enter below details to login',
+                style: TextStyle(
+                    color: Styles.colorDark,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w300),
+              ),
+              const Text(
+                'to your account',
+                style: TextStyle(
+                    color: Styles.colorDark,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w300),
+              ),
+              const Padding(padding: EdgeInsets.all(21)),
+              Container(
+                  height: 55,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                      color: const Color(0xfffdfdfd),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: const Color(0xffebebeb))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Padding(padding: EdgeInsets.all(8)),
+                      Icon(Icons.person, size: 24, color: Color(0xff7c7c7c),),
+                      const Padding(padding: EdgeInsets.all(8)),
+                      Container(
+                          color: Color(0xffebebeb), height: 55, width: 1),
+                      const Padding(padding: EdgeInsets.all(8)),
+                      const Text(
+                        'Email',
+                        style: TextStyle(
+                            color: Color(0xff7c7c7c),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  )),
+              const Padding(padding: EdgeInsets.all(8)),
+              Container(
+                  height: 55,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                      color: const Color(0xfffdfdfd),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: const Color(0xffebebeb))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Padding(padding: EdgeInsets.all(8)),
+                      const Icon(Icons.lock_outline, size: 24, color: Color(0xff7c7c7c)),
+                      const Padding(padding: EdgeInsets.all(8)),
+                      Container(
+                          color: Color(0xffebebeb), height: 55, width: 1),
+                      const Padding(padding: EdgeInsets.all(8)),
+                      const Expanded(
+                        child: Text(
+                          'Password',
+                          style: TextStyle(
+                              color: Color(0xff7c7c7c),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      const Icon(Icons.remove_red_eye_outlined, size: 24, color: Color(0xff7c7c7c)),
+                      const Padding(padding: EdgeInsets.all(8)),
+                    ],
+                  )),
                 ],
-              )),
+              ),
               const Padding(padding: EdgeInsets.all(16)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  Text('Forgot password?'),
+                children: [
+                  GestureDetector(
+                      onTap: onForgotPasswordPressed,
+                      child: const Text('Forgot password?')),
                 ],
               ),
               const Padding(padding: EdgeInsets.all(16)),
@@ -236,7 +238,6 @@ class LoginScreen extends StatelessWidget {
                   style: TextStyle(color: Styles.colorDark, fontSize: 16),
                 ),
               ),
-              const Padding(padding: EdgeInsets.all(16)),
             ],
           ),
         ),
