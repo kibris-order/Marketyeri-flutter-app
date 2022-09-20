@@ -123,3 +123,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: MarketYeriIcons
+      fonts:
+        - asset: assets/fonts/MarketYeriIcons.ttf
+          weight: 100
