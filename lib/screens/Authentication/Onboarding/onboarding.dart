@@ -4,6 +4,7 @@ import 'package:marketyeri/screens/Authentication/Login/login_screen.dart';
 import 'package:marketyeri/screens/Authentication/Register/register_basic_info.dart';
 import 'package:marketyeri/screens/Authentication/Register/register_screen.dart';
 import 'package:marketyeri/screens/routes.dart';
+import 'package:marketyeri/styles/custom_icons.dart';
 import 'package:marketyeri/styles/styles.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -64,13 +65,8 @@ class OnBoardingScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(
-                      width: 2,
-                      child: Image.asset(
-                        'assets/icons/mayi_logo_text.png',
-                        width: 20,
-                      ),
-                    ),
+                    const Icon(MarketYeriIcons.marketYeriLogo,
+                    size: 20,),
                     Expanded(
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.8,
