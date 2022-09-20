@@ -99,40 +99,64 @@ class StateAuthenticationFlow extends State<AuthenticationFlow> {
   }
 
   Route _onGenerateRoute(RouteSettings settings) {
-    late Widget page;
     switch (settings.name) {
       case routeOnBoarding:
-        page = OnBoardingScreen(
-            onContinueAsGuestPressed: _onContinueAsGuestPressed,
-            onRegisterPressed: _onRegisterPressed,
-            onLoginPressed:
+        return MaterialPageRoute<dynamic>(
+          builder: (context) {
+            return OnBoardingScreen(
+                onContinueAsGuestPressed: _onContinueAsGuestPressed,
+                onRegisterPressed: _onRegisterPressed,
+                onLoginPressed:
                 _onLoginPressed); //onPressed, resolve either login or register
-        break;
+          },
+          settings: settings,
+        );
       case routeLogin:
-        page = LoginScreen(
-          onForgotPasswordPressed: _onForgotPasswordPressed,
-          onRegisterPressed: _onRegisterPressed,
+        return MaterialPageRoute<dynamic>(
+          builder: (context) {
+            return LoginScreen(
+              onForgotPasswordPressed: _onForgotPasswordPressed,
+              onRegisterPressed: _onRegisterPressed,
+            );
+          },
+          settings: settings,
         );
-        break;
       case routeRegister:
-        page = RegisterScreen(
-          onLoginPressed: _onLoginPressed,
-          onRegisterSubmit: _onRegisterSubmit,
+        return MaterialPageRoute<dynamic>(
+          builder: (context) {
+            return RegisterScreen(
+              onLoginPressed: _onLoginPressed,
+              onRegisterSubmit: _onRegisterSubmit,
+            );
+          },
+          settings: settings,
         );
-        break;
       case routeRegisterBasicInfo:
-        page = RegisterBasicInfo(
-            onRegisterBasicInfoComplete: _onRegisterBasicInfoComplete);
-        break;
+        return MaterialPageRoute<dynamic>(
+          builder: (context) {
+            return  RegisterBasicInfo(
+                onRegisterBasicInfoComplete: _onRegisterBasicInfoComplete);
+          },
+          settings: settings,
+        );
       case routeForgotPassword:
-        page = ForgotPassword(
-            onPasswordRecoverButtonPressed: _onPasswordRecoverButtonPressed);
-        break;
+        return MaterialPageRoute<dynamic>(
+          builder: (context) {
+            return  ForgotPassword(
+                onPasswordRecoverButtonPressed: _onPasswordRecoverButtonPressed);
+          },
+          settings: settings,
+        );
+
     }
 
     return MaterialPageRoute<dynamic>(
       builder: (context) {
-        return page;
+        return OnBoardingScreen(
+            onContinueAsGuestPressed: _onContinueAsGuestPressed,
+            onRegisterPressed: _onRegisterPressed,
+            onLoginPressed:
+            _onLoginPressed); //onPressed, resolve either login or register
       },
       settings: settings,
     );
