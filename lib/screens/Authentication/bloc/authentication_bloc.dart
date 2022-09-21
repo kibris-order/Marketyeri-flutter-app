@@ -29,8 +29,7 @@ class AuthenticationBloc
 
     on<AuthenticationLoggedIn>((event, emit) async {
       try {
-        //final isSignedIn = _userRepository.isSignedIn();
-        bool isSignedIn = true;
+        final isSignedIn = _userRepository.isSignedIn();
         if (isSignedIn) {
           emit(AuthenticationSuccess());
         } else {

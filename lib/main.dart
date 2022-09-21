@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:marketyeri/screens/Authentication/Login/cubit/login_cubit.dart';
+import 'package:marketyeri/screens/Authentication/Register/cubit/register_cubit.dart';
 import 'package:marketyeri/screens/Authentication/bloc/authentication_bloc.dart';
 import 'package:marketyeri/screens/Home/home_screen.dart';
 
@@ -23,6 +25,12 @@ Future<void> main() async {
           BlocProvider<AuthenticationBloc>(
             create: (context) =>
                 locator<AuthenticationBloc>()..add(AuthenticationStarted()),
+          ),
+          BlocProvider<RegisterCubit>(
+            create: (context) => locator<RegisterCubit>(),
+          ),
+          BlocProvider<LoginCubit>(
+            create: (context) => locator<LoginCubit>(),
           )
         ],
         child: const MyApp(),

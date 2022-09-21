@@ -50,6 +50,8 @@ dependencies:
   firebase_storage: ^10.3.8
   freezed_annotation: ^2.1.0
   json_annotation: ^4.6.0
+  google_sign_in: ^5.4.1
+  flutter_facebook_auth: ^4.4.1+1
 
 dev_dependencies:
   flutter_test:

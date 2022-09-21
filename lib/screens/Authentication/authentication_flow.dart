@@ -49,6 +49,7 @@ class StateAuthenticationFlow extends State<AuthenticationFlow> {
 
   }
 
+
   void _onContinueAsGuestPressed() {
     setState(() {
       firstBackButton = 0;
