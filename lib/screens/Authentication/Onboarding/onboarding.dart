@@ -59,7 +59,7 @@ class OnBoardingScreen extends StatelessWidget {
           ),
           SafeArea(
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -127,21 +127,21 @@ class OnBoardingScreen extends StatelessWidget {
                       onPressed: onContinueAsGuestPressed,
                       child: const Text(
                         'Continue as guest',
-                        style: TextStyle(fontSize: 16, color: Styles.colorDark),
+                        style: TextStyle(fontSize: 14, color: Styles.colorDark),
                       ),
                     ),
                     const Padding(padding: EdgeInsets.all(8)),
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 4),
+                              vertical: 14, horizontal: 4),
                           side: const BorderSide(color: Styles.colorDark)
                           //backgroundColor: MaterialStateProperty.all<Color>(Styles.colorDark),
                           ),
                       onPressed: onLoginPressed,
                       child: const Text(
                         'Login',
-                        style: TextStyle(color: Styles.colorDark, fontSize: 16),
+                        style: TextStyle(color: Styles.colorDark, fontSize: 14),
                       ),
                     ),
                     const Padding(padding: EdgeInsets.all(8)),
@@ -149,17 +149,17 @@ class OnBoardingScreen extends StatelessWidget {
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsets>(
                             const EdgeInsets.symmetric(
-                                vertical: 16, horizontal: 4)),
+                                vertical: 14, horizontal: 4)),
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Styles.colorDark),
                       ),
                       onPressed: onRegisterPressed,
                       child: const Text(
                         'Create Account',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
                     ),
-                    const Padding(padding: EdgeInsets.all(16)),
+                    const Padding(padding: EdgeInsets.all(14)),
                   ],
                 ),
               ),
