@@ -13,7 +13,7 @@ class ForgotPassword extends StatelessWidget {
       backgroundColor: Styles.colorWhite,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -23,7 +23,7 @@ class ForgotPassword extends StatelessWidget {
                 MarketYeriIcons.marketYeriLogo,
                 size: 20,
               ),
-             Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.05)),
+             Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.1)),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -36,7 +36,7 @@ class ForgotPassword extends StatelessWidget {
                         'Forgot Password',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 26,
+                            fontSize: 23,
                             color: Styles.colorDark),
                       ),
                       const Padding(padding: EdgeInsets.all(4)),
@@ -44,14 +44,14 @@ class ForgotPassword extends StatelessWidget {
                         'Please enter below details to ',
                         style: TextStyle(
                             color: Styles.colorDark,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w300),
                       ),
                       const Text(
                         'recover your account',
                         style: TextStyle(
                             color: Styles.colorDark,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w300),
                       ),
                       const Padding(padding: EdgeInsets.all(21)),
@@ -75,29 +75,29 @@ class ForgotPassword extends StatelessWidget {
                                 'Email',
                                 style: TextStyle(
                                     color: Color(0xff7c7c7c),
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w500),
                               ),
                             ],
                           )),
                     ],
                   ),
-                  const Padding(padding: EdgeInsets.all(16)),
+                  const Padding(padding: EdgeInsets.all(14)),
                   ElevatedButton(
                     style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsets>(
                           const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 4)),
+                              vertical: 14, horizontal: 4)),
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Styles.colorDark),
                     ),
                     onPressed: onPasswordRecoverButtonPressed,
                     child: const Text(
                       'Recover account',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.all(16)),
+                  const Padding(padding: EdgeInsets.all(14)),
                 ],
               ),
             ],
