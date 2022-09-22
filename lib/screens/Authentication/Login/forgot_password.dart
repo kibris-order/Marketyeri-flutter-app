@@ -23,7 +23,7 @@ class ForgotPassword extends StatelessWidget {
                 MarketYeriIcons.marketYeriLogo,
                 size: 20,
               ),
-             Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.1)),
+             Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.05)),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,7 +54,7 @@ class ForgotPassword extends StatelessWidget {
                             fontSize: 14,
                             fontWeight: FontWeight.w300),
                       ),
-                      const Padding(padding: EdgeInsets.all(21)),
+                      const Padding(padding: EdgeInsets.all(16)),
                       Container(
                           height: 55,
                           width: MediaQuery.of(context).size.width * 0.9,
